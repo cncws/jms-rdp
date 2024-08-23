@@ -69,9 +69,9 @@ func init() {
 	cli = client.NewJmsClient(serverURL, accessKey, secretKey, 3)
 }
 
-func handleRDP(asset_id string) error {
+func handleRDP(assetID string) error {
 	log.Println("下载连接令牌...")
-	token, err := cli.GenRDPToken(asset_id, account)
+	token, err := cli.GenRDPToken(assetID, account)
 	if err != nil {
 		return err
 	}
