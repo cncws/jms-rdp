@@ -1,4 +1,4 @@
-module jms-rdp
+module github.com/cncws/jms-rdp
 
 go 1.22.5
 

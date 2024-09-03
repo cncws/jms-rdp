@@ -3,11 +3,12 @@ package main
 import (
 	"flag"
 	"html/template"
-	"jms-rdp/client"
 	"log"
 	"os"
 	"os/exec"
 	"runtime"
+
+	"github.com/cncws/jms-rdp/client"
 )
 
 const (
