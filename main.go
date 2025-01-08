@@ -74,12 +74,14 @@ func handleRDP(assetID string) error {
 	log.Println("下载连接令牌...")
 	token, err := cli.GenRDPToken(assetID, account)
 	if err != nil {
+		log.Println("❌", err)
 		return err
 	}
 	log.Println("✅", token)
 	log.Println("下载 RDP 文件...")
 	file, err := cli.DownRDP(token, fullscreen)
 	if err != nil {
+		log.Println("❌", err)
 		return err
 	}
 	log.Println("✅", file)
@@ -110,8 +112,9 @@ func main() {
 	for _, p := range protocols {
 		switch p {
 		case "rdp":
-			handleRDP(id)
-			return
+			if handleRDP(id) != nil {
+				os.Exit(1)
+			}
 		}
 	}
 	log.Fatal("❌未支持协议", protocols)

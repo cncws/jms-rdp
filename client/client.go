@@ -3,6 +3,7 @@ package client
 import (
 	"bytes"
 	"encoding/json"
+	"errors"
 	"io"
 	"log"
 	"net/http"
@@ -83,8 +84,14 @@ func (c *JmsClient) DownRDP(token, fullscreen string) (string, error) {
 	}
 	defer resp.Body.Close()
 	body, _ := io.ReadAll(resp.Body)
-	f, _ := os.CreateTemp("", "*.rdp")
-	defer f.Close()
-	f.Write(body)
-	return f.Name(), nil
+	if resp.StatusCode == 200 {
+		f, _ := os.CreateTemp("", "*.rdp")
+		defer f.Close()
+		f.Write(body)
+		return f.Name(), nil
+	} else {
+		var data map[string]any
+		_ = json.Unmarshal(body, &data)
+		return "", errors.New(data["detail"].(string))
+	}
 }
