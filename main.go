@@ -115,7 +115,8 @@ func main() {
 			if handleRDP(id) != nil {
 				os.Exit(1)
 			}
+		default:
+			log.Fatal("❌未支持协议", protocols)
 		}
 	}
-	log.Fatal("❌未支持协议", protocols)
 }
