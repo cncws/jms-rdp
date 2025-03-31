@@ -6,8 +6,8 @@
 
 ## 使用方法
 
-- MacOS 需安装 Microsoft Remote Desktop
-  - `brew install --cask microsoft-remote-desktop`
+- MacOS 需安装 Windows App；windows 已经内置 mstsc，无需安装
+  - `brew install --cask windows-app`
 - 在 JumpServer 网页端获取 API Key
 - 使用命令打开远程桌面
 
